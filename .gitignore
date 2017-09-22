@@ -36,3 +36,4 @@ dist/*
 
 demo/node_modules
 demo/dist
+/.vs
