@@ -14,13 +14,20 @@ export class Ng2DeviceService {
     device = '';
     os_version = '';
     browser_version = '';
-    constructor() {
-        this.ua = window.navigator.userAgent;
+    private _window: any;
+
+    constructor(_window?: any) {
+        if (_window) {
+            this._window = _window;
+        } else {
+            this._window = window; // angular 2/legacy allows access to _window property
+        }
         this._setDeviceInfo();
     }
 
     private _setDeviceInfo() {
         let reTree = new ReTree();
+        this.ua = this._window.navigator.userAgent;
         let ua = this.ua;
         this.userAgent = ua;
         let mappings = [
