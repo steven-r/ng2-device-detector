@@ -31,7 +31,6 @@ Desktop.ini
 # Build files
 # dist/*
 .tmp/*
-build/*
 
 # Demo ignore folders
 
