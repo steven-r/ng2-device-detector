@@ -74,6 +74,5 @@
   },
   "engines": {
     "node": ">=6.0.0"
-  },
-  "module": "./dist/index.js" 
+  }
 }
