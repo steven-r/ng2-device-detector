@@ -96,7 +96,7 @@ gulp.task('rollup:umd', function () {
 
       // Bundle's entry point
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#entry
-      entry: `${buildFolder}/index.js`,
+      input: `${buildFolder}/index.js`,
 
       // A list of IDs of modules that should remain external to the bundle
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#external
@@ -109,14 +109,14 @@ gulp.task('rollup:umd', function () {
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#format
       format: 'umd',
 
-      // Export mode to use
-      // See https://github.com/rollup/rollup/wiki/JavaScript-API#exports
-      exports: 'named',
+          // Export mode to use
+          // See https://github.com/rollup/rollup/wiki/JavaScript-API#exports
+          exports: 'named',
 
-      // The name to use for the module for UMD/IIFE bundles
-      // (required for bundles with exports)
-      // See https://github.com/rollup/rollup/wiki/JavaScript-API#modulename
-      moduleName: 'ng2-device-detector',
+          // The name to use for the module for UMD/IIFE bundles
+          // (required for bundles with exports)
+          // See https://github.com/rollup/rollup/wiki/JavaScript-API#modulename
+          name: 'ng2-device-detector',
 
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#globals
       globals: {
