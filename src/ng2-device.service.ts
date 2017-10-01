@@ -14,18 +14,12 @@ export class Ng2DeviceService {
     device = '';
     os_version = '';
     browser_version = '';
-    private _window: any;
-
-    constructor(_window?: any) {
-        if (_window) {
-            this._window = _window;
-        } else {
-            this._window = window; // angular 2/legacy allows access to _window property
-        }
-        this._setDeviceInfo();
-    }
+    private _window: any|null;
 
     private _setDeviceInfo() {
+        if (this._window == null) {
+            throw "Please call 'getDeviceInfo()' first";
+        }
         let reTree = new ReTree();
         this.ua = this._window.navigator.userAgent;
         let ua = this.ua;
@@ -64,7 +58,13 @@ export class Ng2DeviceService {
         }
     }
 
-    public getDeviceInfo(): any {
+    public getDeviceInfo(_window?: any): any {
+        if (_window) {
+            this._window = _window;
+        } else {
+            this._window = window; // angular 2/legacy allows access to _window property
+        }
+        this._setDeviceInfo();
         return {
             userAgent: this.userAgent,
             os : this.os,

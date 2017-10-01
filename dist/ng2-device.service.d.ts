@@ -7,9 +7,8 @@ export declare class Ng2DeviceService {
     os_version: string;
     browser_version: string;
     private _window;
-    constructor(_window?: any);
     private _setDeviceInfo();
-    getDeviceInfo(): any;
+    getDeviceInfo(_window?: any): any;
     isMobile(): boolean;
     isTablet(): boolean;
     isDesktop(): boolean;

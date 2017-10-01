@@ -244,10 +244,7 @@ var ReTree = (function () {
  * Created by ahsanayaz on 08/11/2016.
  */
 var Ng2DeviceService = (function () {
-    /**
-     * @param {?=} _window
-     */
-    function Ng2DeviceService(_window) {
+    function Ng2DeviceService() {
         this.ua = '';
         this.userAgent = '';
         this.os = '';
@@ -255,19 +252,15 @@ var Ng2DeviceService = (function () {
         this.device = '';
         this.os_version = '';
         this.browser_version = '';
-        if (_window) {
-            this._window = _window;
-        }
-        else {
-            this._window = window; // angular 2/legacy allows access to _window property
-        }
-        this._setDeviceInfo();
     }
     /**
      * @return {?}
      */
     Ng2DeviceService.prototype._setDeviceInfo = function () {
         var _this = this;
+        if (this._window == null) {
+            throw "Please call 'getDeviceInfo()' first";
+        }
         var /** @type {?} */ reTree = new ReTree();
         this.ua = this._window.navigator.userAgent;
         var /** @type {?} */ ua = this.ua;
@@ -303,9 +296,17 @@ var Ng2DeviceService = (function () {
         }
     };
     /**
+     * @param {?=} _window
      * @return {?}
      */
-    Ng2DeviceService.prototype.getDeviceInfo = function () {
+    Ng2DeviceService.prototype.getDeviceInfo = function (_window) {
+        if (_window) {
+            this._window = _window;
+        }
+        else {
+            this._window = window; // angular 2/legacy allows access to _window property
+        }
+        this._setDeviceInfo();
         return {
             userAgent: this.userAgent,
             os: this.os,
@@ -368,9 +369,7 @@ Ng2DeviceService.decorators = [
 /**
  * @nocollapse
  */
-Ng2DeviceService.ctorParameters = function () { return [
-    null,
-]; };
+Ng2DeviceService.ctorParameters = function () { return []; };
 
 var Ng2DeviceDetectorModule = (function () {
     function Ng2DeviceDetectorModule() {
